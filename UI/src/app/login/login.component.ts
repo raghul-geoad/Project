@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   password = new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[A-Za-z\\d]+$')])
   user:string='';
   pass:string='';
-  public hide=true;
+  public hide = true;
   public errorMessage:string='';
   constructor(private router: Router, private location: Location) { }
 
@@ -43,6 +43,9 @@ export class LoginComponent implements OnInit {
     return '';
     }
 
+    Signup(){
+      this.router.navigate(['/signup'])
+    }
     loginRoute():void{
       // if(this.loginService.login(this.user,this.pass)){
       //   this.router.navigate(['/dashboard']);
