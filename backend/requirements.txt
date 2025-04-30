@@ -21,14 +21,14 @@ API Endpoints
 		}
 	• Responses
 		o Success: 
-			 Status Code: 200 OK
-			 Body: 
+			o Status Code: 200 OK
+			o Body: 
 			{
 		 	"message": "success"
 			}
 		o Failure:
-			 Status Code: 401 Unauthorized
-			 Body: 
+			o Status Code: 401 Unauthorized
+			o Body: 
 			{
 			"message": "login failed with username {username}"
 			}
@@ -44,26 +44,26 @@ API Endpoints
 		}
 	• Responses
 		o Success: 
-			 Status Code: 201 Created
-			 Body: 
+			o Status Code: 201 Created
+			o Body: 
 			{
 		  	"message": "success"
 			}
 		o Failure: 
-			 Status Code: 400 Bad Request
-			 Body: 
-			 If username is already taken: 
+			o Status Code: 400 Bad Request
+			o Body: 
+			o If username is already taken: 
 			{
   			"message": "username already taken"
 			}
-			 For other errors: 
+			o For other errors: 
 			{
   			"error": "error message"
 			}
 
 Configuration:
-	• Database URI: Configured in app.config['SQLALCHEMY_DATABASE_URI'] as a PostgreSQL database. Example: 
-	• postgresql://postgres:12345@localhost/project
+	• Database URI: Configured in app.config['SQLALCHEMY_DATABASE_URI'] as a PostgreSQL database. 
+	• Example: postgresql://postgres:12345@localhost/project
 	• Track Modifications: app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] is set to False to avoid overhead.
 
 Security:
