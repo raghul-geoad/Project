@@ -16,7 +16,10 @@
             </button>
             <mat-error *ngIf="password.invalid">{{getErrorPassword()}}</mat-error>
          </mat-form-field><br>
-         <button mat-raised-button (click)="loginRoute()">Login</button>
+         <div class="buttons">
+             <button mat-raised-button class="loginButton" [disabled]="username.invalid || password.invalid" (click)="loginRoute()">Login</button>
+             <button mat-raised-button (click)="Signup()">Signup</button>
+         </div>
          <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
         </div>
     </div>

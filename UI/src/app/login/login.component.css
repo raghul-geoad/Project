@@ -18,3 +18,14 @@
 .inputForm mat-form-field{
     width: 300px;
 }
+.buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.loginButton{
+    color: white;
+    background-color: blue;
+}
