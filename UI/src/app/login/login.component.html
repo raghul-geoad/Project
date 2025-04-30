@@ -4,13 +4,13 @@
         <h2>Login Form</h2>
         <mat-form-field appearance="outline">
             <mat-label>Username</mat-label>
-            <input matInput [(ngModel)]="user" placeholder="Enter Username" [formControl]="username">
+            <input matInput placeholder="Enter Username" [formControl]="username">
             <mat-error *ngIf="username.invalid">{{getErrorUsername()}}</mat-error>
          </mat-form-field>
          <br>
          <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput [(ngModel)]="pass" [type]="hide ? 'password' : 'text'" [formControl]="password">
+            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>

@@ -13,8 +13,6 @@ export class LoginComponent implements OnInit {
 
   username = new FormControl('',[Validators.required, Validators.minLength(8)])
   password = new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[A-Za-z\\d]+$')])
-  user:string='';
-  pass:string='';
   message:string='';
   public hide = true;
   public errorMessage:string='';
@@ -49,19 +47,19 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/signup'])
     }
     loginRoute():void{
-
-      this.loginService.login(this.username, this.password).subscribe({
-        next : (response) => {
-            if (response.message === 'success') {
-              this.router.navigate(['/dashboard']); 
-            } else {
-              this.message = response.message;
-            }
-          },
-          error : (error) => {
-            this.message = error.error?.message || 'An error occurred';
+      this.loginService.login(this.username.value, this.password.value).subscribe({
+        next : response => {
+          if (response.message === 'success') {
+            this.router.navigate(['/dashboard']); 
+          } else {
+            this.message = response.message;
           }
-      });      
+        },
+        error : error => {
+          this.message = error.error?.message || 'An error occurred';
+        }
+      }
+      );      
     }
 
 
