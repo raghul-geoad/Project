@@ -62,8 +62,8 @@ API Endpoints
 			}
 
 Configuration:
-	• Database URI: Configured in app.config['SQLALCHEMY_DATABASE_URI'] as a PostgreSQL database. Example: 
-	• postgresql://postgres:12345@localhost/project
+	• Database URI: Configured in app.config['SQLALCHEMY_DATABASE_URI'] as a PostgreSQL database. 
+	• Example: postgresql://postgres:12345@localhost/project
 	• Track Modifications: app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] is set to False to avoid overhead.
 
 Security:
