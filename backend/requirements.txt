@@ -1,0 +1,80 @@
+API Documentation
+
+Overview
+
+This document provides an overview of the API endpoints for a Flask-based authentication service. The application allows users to log in and sign up, with passwords securely hashed using Werkzeug's security module.
+
+Base URL
+
+All endpoints are accessible at the base URL where the Flask application is hosted, typically http://localhost:5000 during development.
+
+API Endpoints
+1. Login
+	• URL: /login
+	• Method: POST
+	• Request
+		o Headers: Content-Type: application/json
+		o Body: 
+		{
+  		"username": "string",
+  		"password": "string"
+		}
+	• Responses
+		o Success: 
+			o Status Code: 200 OK
+			o Body: 
+			{
+		 	"message": "success"
+			}
+		o Failure:
+			o Status Code: 401 Unauthorized
+			o Body: 
+			{
+			"message": "login failed with username {username}"
+			}
+2. Sign Up
+	• URL: /signup
+	• Method: POST
+	• Request
+		o Headers: Content-Type: application/json
+		o Body: 
+		{
+  		"username": "string",
+  		"password": "string"
+		}
+	• Responses
+		o Success: 
+			o Status Code: 201 Created
+			o Body: 
+			{
+		  	"message": "success"
+			}
+		o Failure: 
+			o Status Code: 400 Bad Request
+			o Body: 
+			o If username is already taken: 
+			{
+  			"message": "username already taken"
+			}
+			o For other errors: 
+			{
+  			"error": "error message"
+			}
+
+Configuration:
+	• Database URI: Configured in app.config['SQLALCHEMY_DATABASE_URI'] as a PostgreSQL database. 
+	• Example: postgresql://postgres:12345@localhost/project
+	• Track Modifications: app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] is set to False to avoid overhead.
+
+Security:
+	• Password Hashing: Passwords are hashed using generate_password_hash from werkzeug.security to ensure they are stored securely in the database.
+	• CORS: Cross-Origin Resource Sharing is enabled using Flask-CORS to allow requests from different origins.
+
+General Notes:
+	• Database Initialization: The application initializes the database and creates tables on startup. An admin user is created if none exists.
+	• Error Handling: The application returns error messages in JSON format with appropriate HTTP status codes.
+
+
+
+
+

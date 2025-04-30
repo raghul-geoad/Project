@@ -6,11 +6,14 @@ from models import User
 
 app=Flask(__name__)
 CORS(app)
-#Main DB 
-# app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:12345@localhost/project'
+
+
+#Test(Raghul's) DB 
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:12345@localhost/project'
+
 
 #Test(selva's) DB
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:root@localhost/Project'
+# app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:root@localhost/Project'
 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
@@ -20,7 +23,7 @@ db.init_app(app)
 def create_table():
     db.create_all()
     if not User.query.filter_by(role='admin').first():
-        admin=User(name='raghul',role='admin',password=generate_password_hash("12345678"),access_component=["all"])
+        admin=User(name='adminraghul',role='admin',password=generate_password_hash("Password123"),access_component=["all"])
         db.session.add(admin)
         db.session.commit()
 
