@@ -50,18 +50,18 @@ export class LoginComponent implements OnInit {
     }
     loginRoute():void{
 
-      this.loginService.login(this.username, this.password).subscribe(
-        response => {
-          if (response.message === 'success') {
-            this.router.navigate(['/dashboard']); 
-          } else {
-            this.message = response.message;
+      this.loginService.login(this.username, this.password).subscribe({
+        next : (response) => {
+            if (response.message === 'success') {
+              this.router.navigate(['/dashboard']); 
+            } else {
+              this.message = response.message;
+            }
+          },
+          error : (error) => {
+            this.message = error.error?.message || 'An error occurred';
           }
-        },
-        error => {
-          this.message = error.error?.message || 'An error occurred';
-        }
-      );      
+      });      
     }
 
 
