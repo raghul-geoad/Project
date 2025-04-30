@@ -36,10 +36,10 @@ def login():
         if user and check_password_hash(user.password,password):
             return jsonify({"message":"success"})
         else:
-            return jsonify({"message":f"login failed with username {username}"})
+            return jsonify({"message":f"login failed with username {username}"}),401
         
     except Exception as e:
-        return jsonify({"error":str(e)})
+        return jsonify({"error":str(e)}),400
                
 @app.route("/signUp",methods=["POST"])
 def sign_up():
@@ -47,21 +47,17 @@ def sign_up():
         data=request.get_json()
         username=data["username"]
         password=data["password"]
-        confirm_password=data["confirm_password"]
 
-        if password!=confirm_password:
-            return jsonify({"message:Password and Cofirm Password does not match"}),401
-
-        if User.query.filter_by(name=username):
+        if User.query.filter_by(name=username).first():
             return jsonify({"message":"Username already taken"}),400
         else:
             user=User(name=username,password=generate_password_hash(password))
             db.session.add(user)
             db.session.commit() 
-            return jsonify({"message":"success"})
+            return jsonify({"message":"success"}),201
     
     except Exception as e:
-        return jsonify({"error":str(e)})
+        return jsonify({"error":e}),400
 
 
 if __name__=="__main__":
