@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,10 @@ export class LoginComponent implements OnInit {
   password = new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[A-Za-z\\d]+$')])
   user:string='';
   pass:string='';
+  message:string='';
   public hide = true;
   public errorMessage:string='';
-  constructor(private router: Router, private location: Location) { }
+  constructor(private router: Router, private location: Location,private loginService : LoginService) { }
 
   ngOnInit(): void {
   }
@@ -47,14 +49,19 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/signup'])
     }
     loginRoute():void{
-      // if(this.loginService.login(this.user,this.pass)){
-      //   this.router.navigate(['/dashboard']);
-      // }
-      // else{
-      //   this.errorMessage = 'Invalid Credentials';
-      //   this.username.reset();
-      //   this.password.reset();
-      // }
+
+      this.loginService.login(this.username, this.password).subscribe(
+        response => {
+          if (response.message === 'success') {
+            this.router.navigate(['/dashboard']); 
+          } else {
+            this.message = response.message;
+          }
+        },
+        error => {
+          this.message = error.error?.message || 'An error occurred';
+        }
+      );      
     }
 
 

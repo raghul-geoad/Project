@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    routingModule
+    routingModule,
   ],
   imports: [
     BrowserModule,
