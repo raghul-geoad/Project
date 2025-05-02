@@ -1,5 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SignupService } from '../services/signup.service';
 
 function passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
   const password = control.get('password');
@@ -23,7 +25,7 @@ export class SignupComponent implements OnInit {
   public hide1=true;
   public errorMessage:string='';
   public successmessage:string='';
-  constructor() {
+  constructor(private router : Router,private signUpService : SignupService) {
     this.signupForm = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.minLength(8)]),
       password: new FormControl('', [
@@ -81,14 +83,21 @@ export class SignupComponent implements OnInit {
   }
 
     signup():void{
-      // if(this.loginService.login(this.user,this.pass)){
-      //   this.router.navigate(['/dashboard']);
-      // }
-      // else{
-      //   this.errorMessage = 'Invalid Credentials';
-      //   this.username.reset();
-      //   this.password.reset();
-      // }
+      // console.log(this.signupForm.get('username')?.value)
+      this.signUpService.signup(this.signupForm.get('username')?.value,this.signupForm.get('password')?.value).subscribe({
+        next: response => {
+          if (response.message === 'success') {
+            alert("Signup is successful, click 'ok' to navigate to Login Page.");
+            this.router.navigate(['/login']);
+          }
+          else{
+            alert(response.message);
+          }
+        },
+        error: error => {
+          alert('An error occurred: ' + error.message);
+        }
+      });
     }
 
 }
