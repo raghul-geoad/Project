@@ -40,10 +40,10 @@ def login():
         if user and check_password_hash(user.password,password):
             return jsonify({"message":"success"})
         else:
-            return jsonify({"message":f"login failed with username {username}"}),401
+            return jsonify({"message":f"login failed with username {username}"})
         
     except Exception as e:
-        return jsonify({"error":str(e)}),400
+        return jsonify({"error":str(e)})
                
 @app.route("/signUp",methods=["POST"])
 def sign_up():
@@ -53,15 +53,15 @@ def sign_up():
         password=data["password"]
 
         if User.query.filter_by(name=username).first():
-            return jsonify({"message":"Username already taken"}),400
+            return jsonify({"message":"Username already taken"})
         else:
             user=User(name=username,password=generate_password_hash(password))
             db.session.add(user)
             db.session.commit() 
-            return jsonify({"message":"success"}),201
+            return jsonify({"message":"success"})
     
     except Exception as e:
-        return jsonify({"error":e}),400
+        return jsonify({"error":e})
 
 @app.route("/componentAccessRequest",methods=["POST"])
 def access_request():
@@ -76,7 +76,7 @@ def access_request():
         else:
             user.access_component=func.array_append(user.access_component,component)
             db.session.commit()
-            return jsonify({"message":"success"}),201
+            return jsonify({"message":"success"})
     else:
         user.access_component=func.array_append(user.access_component,component)
         db.session.commit()
