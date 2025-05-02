@@ -11,12 +11,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccessComponent } from './access/access.component';
-
+import { MatMenuModule } from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDividerModule} from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
     routingModule,
-    AccessComponent,
+    AccessComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,14 @@ import { AccessComponent } from './access/access.component';
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatMenuModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,10 @@
+<div class="main-container">
+    <button mat-icon-button (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>
+    <img src="./assets/Geodis-Logo_NEW_138x51px_BLUE 1.svg" alt="Geodis Logo" width="100" height="60" class="logo">
+    <button class="logOut" mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>person</mat-icon></button>
+    <mat-menu #menu="matMenu">
+        <pre> Welcome! </pre>
+        <!-- <button mat-menu-item><mat-icon class="account-icon">account_circle</mat-icon>My Profile</button> -->
+        <button mat-menu-item (click)="logout()"><mat-icon class="logout-icon">logout</mat-icon>Logout</button>
+    </mat-menu>
+</div>

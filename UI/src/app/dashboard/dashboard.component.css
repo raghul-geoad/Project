@@ -1,0 +1,43 @@
+.main-container{
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+
+
+}
+.mat-drawer{
+    padding: 10px;
+    width: 200px;
+    background-color: #3200E6;
+}
+.mat-drawer-content{
+    padding: 10px;
+    background-color: white;
+}
+.example-container {
+    height: 100%;
+    width: 100%;
+}
+.mat-list-base .mat-list-item {
+   color: white;
+}
+mat-divider{
+    border-top-color: white;
+    align-content: left;
+}
+.mat-list-item button {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+    padding-left: 0px; /* Optional: Adjust the padding as needed */
+  }
+app-footer{
+    color: white;
+    left: 0;
+    right: 0;
+    height: 60px !important;
+    background-color: #3200E6;
+  }
