@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
           }
         },
         error : error => {
-          this.message = error.error?.message || 'An error occurred';
+          this.message = error.error?.message || 'Invalid Credentials';
         }
       }
       );      

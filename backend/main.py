@@ -9,11 +9,11 @@ CORS(app)
 
 
 #Test(Raghul's) DB 
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:12345@localhost/project'
+# app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:12345@localhost/project'
 
 
 #Test(selva's) DB
-# app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:root@localhost/Project'
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:root@localhost/Project'
 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
