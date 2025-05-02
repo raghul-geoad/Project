@@ -15,13 +15,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { ExpansionpanelsComponent } from './expansionpanels/expansionpanels.component';
 @NgModule({
   declarations: [
     AppComponent,
     routingModule,
-    AccessComponent
+    AccessComponent,
+    ExpansionpanelsComponent
   ],
   imports: [
     BrowserModule,
@@ -40,8 +41,8 @@ import { FooterComponent } from './footer/footer.component';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    MatMenuModule
-
+    MatMenuModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

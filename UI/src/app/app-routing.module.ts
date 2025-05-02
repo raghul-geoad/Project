@@ -5,12 +5,16 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ExpansionpanelsComponent } from './expansionpanels/expansionpanels.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
-  {path:'dashboard',component:DashboardComponent}
+  {path:'dashboard',component:DashboardComponent,children:[
+    {path:'',component:ExpansionpanelsComponent,pathMatch:'full'}
+  ]
+  }
 ];
 
 @NgModule({
