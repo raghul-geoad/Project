@@ -1,6 +1,7 @@
 from flask import Flask,jsonify,request
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_cors import CORS
+from sqlalchemy import func
 from db_config import db
 from models import User
 
@@ -62,6 +63,24 @@ def sign_up():
     except Exception as e:
         return jsonify({"error":e}),400
 
+@app.route("/componentAccessRequest",methods=["POST"])
+def access_request():
+    data=request.get_json()
+    username=data["username"]
+    component=data["component"]
+    user=User.query.filter_by(name=username).first()
+
+    if user.access_component:
+        if component in user.access_component:
+            return jsonify({"message":"access already granted"})
+        else:
+            user.access_component=func.array_append(user.access_component,component)
+            db.session.commit()
+            return jsonify({"message":"success"}),201
+    else:
+        user.access_component=func.array_append(user.access_component,component)
+        db.session.commit()
+        return jsonify("message"),201
 
 if __name__=="__main__":
     app.run(debug=True)

@@ -10,11 +10,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AccessComponent } from './access/access.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingModule,
+    AccessComponent,
   ],
   imports: [
     BrowserModule,
