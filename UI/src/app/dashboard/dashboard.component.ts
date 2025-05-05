@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   }
   toggleSidenav() {
     this.drawer.toggle();
+    console.log(sessionStorage.getItem("username"));
   }
 
 }

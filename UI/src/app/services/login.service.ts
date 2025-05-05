@@ -12,7 +12,7 @@ export class LoginService {
   login(username: any, password: any): Observable<any> {
     return this.http.post(this.loginUrl, {"username":username,"password": password}).pipe(tap((response:any) =>{
       if(response.message === "success"){
-        // sessionStorage.setItem("username",this.username.toString())
+        sessionStorage.setItem("username",response.user)
         sessionStorage.setItem("role",response.role);
         sessionStorage.setItem("access",response.access);
       }

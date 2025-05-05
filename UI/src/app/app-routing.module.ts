@@ -9,6 +9,7 @@ import { ExpansionpanelsComponent } from './expansionpanels/expansionpanels.comp
 import { LoginAuthGuard } from './guards/login-auth.guard';
 import { ServerInventoryComponent } from './server-inventory/server-inventory.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
@@ -19,8 +20,8 @@ const routes: Routes = [
     {path:'inventory',component:ServerInventoryComponent}
   ]
   },
-  {path:'accessDenied',component:AccessDeniedComponent}
-
+  {path:'accessDenied',component:AccessDeniedComponent},
+  {path:"**",component:PagenotfoundComponent}
 ];
 
 @NgModule({

@@ -20,13 +20,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card'
 import { ExpansionpanelsComponent } from './expansionpanels/expansionpanels.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingModule,
     AccessComponent,
-    ExpansionpanelsComponent
+    ExpansionpanelsComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
