@@ -38,10 +38,8 @@ import { ExpansionpanelsComponent } from './expansionpanels/expansionpanels.comp
     MatIconModule,
     FormsModule,
     HttpClientModule,
-<<<<<<< HEAD
     MatTableModule,
-    MatSnackBarModule
-=======
+    MatSnackBarModule,
     MatButtonModule,
     MatDividerModule,
     MatSidenavModule,
@@ -49,7 +47,6 @@ import { ExpansionpanelsComponent } from './expansionpanels/expansionpanels.comp
     MatIconModule,
     MatMenuModule,
     MatExpansionModule
->>>>>>> b63e444e07acc357002c364aa1b694be3644ae08
   ],
   providers: [],
   bootstrap: [AppComponent]
