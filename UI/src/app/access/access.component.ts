@@ -11,7 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class AccessComponent implements OnInit {
 
   public dataSource = new MatTableDataSource();
-  public displayColumns=["username","component","action"]
+  public displayColumns=["username","component","action"];
   constructor(private http:HttpClient,private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
@@ -19,12 +19,13 @@ export class AccessComponent implements OnInit {
   }
   
   processRequest(row:any,action:boolean){
+    const message=action?"Request accepted successfully":"Request rejected successfully";
     this.http.post("http://127.0.0.1:5000/processAccessRequest",{
       username:row.user,
       component:row.component,
       action:action
     }).subscribe((res)=>{
-      this.snackBar.open('Request accepted successfully','Close',{duration:3000})
+      this.snackBar.open(message,'Close',{duration:3000})
     },(err)=>{
       console.error(err);
       this.snackBar.open('Request Failed','Close',{duration:3000})
