@@ -11,6 +11,7 @@ import { ServerInventoryComponent } from './server-inventory/server-inventory.co
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { RoleGuard } from './guards/role.guard';
+import { AccessComponent } from './access/access.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
@@ -21,7 +22,8 @@ const routes: Routes = [
     {path:'serverInventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'Server'}},
     {path:'networkInventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'Network'}},
     {path:'databaseInventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'Database'}},
-    {path:'storageInventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'Storage'}}
+    {path:'storageInventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'Storage'}},
+    {path:'accessRequest',component:AccessComponent,canActivate:[RoleGuard]}
   ]
   },
   {path:'accessDenied',component:AccessDeniedComponent},

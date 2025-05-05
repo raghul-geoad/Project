@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,13 +13,13 @@ export class DashboardComponent implements OnInit {
   events: string[] = [];
   public opened: boolean=true;
   @ViewChild('drawer') drawer!: MatDrawer;
-  constructor(private router : Router) { }
+  constructor(private router : Router,public role: LoginService) { }
 
   ngOnInit(): void {
   }
   toggleSidenav() {
     this.drawer.toggle();
-    console.log(sessionStorage.getItem("username"));
+    // console.log(sessionStorage.getItem("username"));
   }
 
 }
