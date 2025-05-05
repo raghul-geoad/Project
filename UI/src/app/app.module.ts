@@ -21,6 +21,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card'
 import { ExpansionpanelsComponent } from './expansionpanels/expansionpanels.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     MatIconModule,
     MatMenuModule,
     MatExpansionModule,
-    MatCardModule
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

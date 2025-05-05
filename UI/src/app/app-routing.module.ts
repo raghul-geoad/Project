@@ -10,6 +10,7 @@ import { LoginAuthGuard } from './guards/login-auth.guard';
 import { ServerInventoryComponent } from './server-inventory/server-inventory.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
@@ -17,10 +18,10 @@ const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'dashboard',component:DashboardComponent,canActivate:[LoginAuthGuard],children:[
     {path:'',component:ExpansionpanelsComponent,pathMatch:'full'},
-    {path:'serverInventory',component:ServerInventoryComponent},
-    {path:'networkInventory',component:ServerInventoryComponent},
-    {path:'databaseInventory',component:ServerInventoryComponent},
-    {path:'storageInventory',component:ServerInventoryComponent}
+    {path:'serverInventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'Server'}},
+    {path:'networkInventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'Network'}},
+    {path:'databaseInventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'Database'}},
+    {path:'storageInventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'Storage'}}
   ]
   },
   {path:'accessDenied',component:AccessDeniedComponent},
