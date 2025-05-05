@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ExpansionpanelsComponent } from './expansionpanels/expansionpanels.component';
 import { LoginAuthGuard } from './guards/login-auth.guard';
 import { ServerInventoryComponent } from './server-inventory/server-inventory.component';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
@@ -17,7 +18,8 @@ const routes: Routes = [
     {path:'',component:ExpansionpanelsComponent,pathMatch:'full'},
     {path:'inventory',component:ServerInventoryComponent}
   ]
-  }
+  },
+  {path:'accessDenied',component:AccessDeniedComponent}
 
 ];
 
@@ -26,4 +28,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingModule = [LoginComponent,SignupComponent,DashboardComponent,HeaderComponent,FooterComponent,ServerInventoryComponent]
+export const routingModule = [LoginComponent,SignupComponent,DashboardComponent,HeaderComponent,FooterComponent,ServerInventoryComponent,AccessDeniedComponent]
