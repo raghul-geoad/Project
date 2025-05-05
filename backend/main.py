@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from flask_cors import CORS
 from sqlalchemy import func
 from db_config import db
-from models import User
+from models import User,Request
 
 app=Flask(__name__)
 CORS(app)
@@ -38,9 +38,9 @@ def login():
 
         user=User.query.filter_by(name=username).first()
         if user and check_password_hash(user.password,password):
-            return jsonify({"message":"success"})
+            return jsonify({"message":"success","role":user.role,"access":user.access_component})
         else:
-            return jsonify({"message":f"login failed with username {username}"}),401
+            return jsonify({"message":f"login failed with username {username}"})
         
     except Exception as e:
         return jsonify({"error":str(e)}),400
@@ -53,7 +53,7 @@ def sign_up():
         password=data["password"]
 
         if User.query.filter_by(name=username).first():
-            return jsonify({"message":"Username already taken"}),400
+            return jsonify({"message":"Username already taken"})
         else:
             user=User(name=username,password=generate_password_hash(password))
             db.session.add(user)
@@ -61,26 +61,69 @@ def sign_up():
             return jsonify({"message":"success"}),201
     
     except Exception as e:
-        return jsonify({"error":e}),400
+        return jsonify({"error":e})
 
 @app.route("/componentAccessRequest",methods=["POST"])
 def access_request():
     data=request.get_json()
     username=data["username"]
     component=data["component"]
+
     user=User.query.filter_by(name=username).first()
 
-    if user.access_component:
-        if component in user.access_component:
-            return jsonify({"message":"access already granted"})
-        else:
-            user.access_component=func.array_append(user.access_component,component)
-            db.session.commit()
-            return jsonify({"message":"success"}),201
-    else:
-        user.access_component=func.array_append(user.access_component,component)
+    if not user:
+        return jsonify({"message":"User not found"})
+    
+    existing_request=Request.query.filter_by(name=username,component=component).first()
+
+    if not existing_request:
+        new_request=Request(name=username,component=component)
+        db.session.add(new_request)
         db.session.commit()
-        return jsonify("message"),201
+        return jsonify({"message":"Access requested"})
+    else:
+        return jsonify({"message":"Already requested"})
+    
+
+@app.route("/processAccessRequest",methods=["POST"])
+def process_request():
+    data=request.get_json()
+    username=data["username"]
+    component=data["component"]
+    bool=data["action"]
+
+    user=User.query.filter_by(name=username).first()
+    req=Request.query.filter_by(name=username,component=component).first()
+
+    if not user:
+        return jsonify({"message":"User not found"})
+
+    if bool:
+        if user.access_component:
+            if component in user.access_component:
+                message="Access already granted"
+            else:
+                user.access_component=func.array_append(user.access_component,component)
+                db.session.commit()
+                message="Access granted"
+        else:
+            user.access_component=[component]
+            db.session.commit()
+            message="Access granted"
+    else:
+        message="Request rejected"
+    
+    if req:
+        db.session.delete(req)
+        db.session.commit()
+
+    return jsonify({"message":message})
+    
+@app.route("/getUserRequest")
+def get_user():
+    req=Request.query.all()
+    users=[{"user":user.name,"component":user.component} for user in req]
+    return users
 
 if __name__=="__main__":
     app.run(debug=True)
