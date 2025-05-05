@@ -17,7 +17,10 @@ const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'dashboard',component:DashboardComponent,canActivate:[LoginAuthGuard],children:[
     {path:'',component:ExpansionpanelsComponent,pathMatch:'full'},
-    {path:'inventory',component:ServerInventoryComponent}
+    {path:'serverInventory',component:ServerInventoryComponent},
+    {path:'networkInventory',component:ServerInventoryComponent},
+    {path:'databaseInventory',component:ServerInventoryComponent},
+    {path:'storageInventory',component:ServerInventoryComponent}
   ]
   },
   {path:'accessDenied',component:AccessDeniedComponent},
