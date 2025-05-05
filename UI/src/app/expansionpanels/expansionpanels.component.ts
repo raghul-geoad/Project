@@ -11,25 +11,25 @@ export class ExpansionpanelsComponent implements OnInit {
     {
       name:'Server',
       children:[
-        {name:'Server Inventory',route:'inventory'}
+        {name:'Server Inventory',route:'serverInventory'}
       ]
     },
     {
       name:'Network',
       children:[
-        {name:'Inventory',route:'inventory'}
+        {name:'Inventory',route:'networkInventory'}
       ]
     },
     {
       name:'Database',
       children:[
-        {name:'Inventory',route:'inventory'}
+        {name:'Inventory',route:'databaseInventory'}
       ]
     },
     {
       name:'Storage',
       children:[
-        {name:'Inventory',route:'inventory'}
+        {name:'Inventory',route:'storageInventory'}
       ]
     }
   ];

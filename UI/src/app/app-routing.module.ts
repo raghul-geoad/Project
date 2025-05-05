@@ -16,10 +16,12 @@ const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
-  {path:'dashboard',component:DashboardComponent,canActivate:[LoginAuthGuard],
-    children:[
-    {path:'',component:ExpansionpanelsComponent,pathMatch:'full',data:{componentName:'server'}},
-    {path:'inventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'server'}},
+  {path:'dashboard',component:DashboardComponent,canActivate:[LoginAuthGuard],children:[
+    {path:'',component:ExpansionpanelsComponent,pathMatch:'full'},
+    {path:'serverInventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'Server'}},
+    {path:'networkInventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'Network'}},
+    {path:'databaseInventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'Database'}},
+    {path:'storageInventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'Storage'}}
   ]
   },
   {path:'accessDenied',component:AccessDeniedComponent},
