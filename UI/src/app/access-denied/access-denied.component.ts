@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccessDeniedComponent implements OnInit {
 
-  constructor() { }
+  public user=sessionStorage.getItem('username')
+  public componentName:any;
+  constructor(private http:HttpClient) { 
+    
+  }
 
   ngOnInit(): void {
+  }
+  
+  requestAccess(){
+    // this.http.post("http://127.0.0.1:5000/componentAccessRequest",{name:this.user,component:})
   }
 
 }

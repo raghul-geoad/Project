@@ -10,14 +10,16 @@ import { LoginAuthGuard } from './guards/login-auth.guard';
 import { ServerInventoryComponent } from './server-inventory/server-inventory.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
   {path:'',redirectTo:'/login',pathMatch:'full'},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
-  {path:'dashboard',component:DashboardComponent,canActivate:[LoginAuthGuard],children:[
-    {path:'',component:ExpansionpanelsComponent,pathMatch:'full'},
-    {path:'inventory',component:ServerInventoryComponent}
+  {path:'dashboard',component:DashboardComponent,canActivate:[LoginAuthGuard],
+    children:[
+    {path:'',component:ExpansionpanelsComponent,pathMatch:'full',data:{componentName:'server'}},
+    {path:'inventory',component:ServerInventoryComponent,canActivate:[RoleGuard],data:{componentName:'server'}},
   ]
   },
   {path:'accessDenied',component:AccessDeniedComponent},
