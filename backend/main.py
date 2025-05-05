@@ -38,7 +38,7 @@ def login():
 
         user=User.query.filter_by(name=username).first()
         if user and check_password_hash(user.password,password):
-            return jsonify({"message":"success","role":user.role,"access":user.access_component})
+            return jsonify({"message":"success","user":user.name,"role":user.role,"access":user.access_component})
         else:
             return jsonify({"message":f"login failed with username {username}"})
         

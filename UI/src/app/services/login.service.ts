@@ -12,4 +12,11 @@ export class LoginService {
   login(username: any, password: any): Observable<any> {
     return this.http.post(this.loginUrl, {"username":username,"password": password});
   }
+  getRole(){
+    return sessionStorage.getItem('role');
+  }
+  logout(){
+    sessionStorage.clear();
+    // sessionStorage.removeItem('role');
+  }
 }
