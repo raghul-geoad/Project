@@ -1,1 +1,18 @@
-<p>dashboard works!</p>
+<div class="main-container">
+    <app-header (sidenavToggle)="toggleSidenav()"></app-header>
+    <mat-drawer-container class="example-container">
+            <mat-drawer #drawer mode="side">
+                <mat-nav-list>
+                    <mat-list-item [routerLink]="['/dashboard']"><mat-icon>home</mat-icon>Home</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item [routerLink]><mat-icon>settings</mat-icon>Settings</mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-nav-list>
+            </mat-drawer>
+            <mat-drawer-content >
+                <!-- <app-breadcrumbs></app-breadcrumbs> -->
+                <router-outlet></router-outlet>
+            </mat-drawer-content>
+    </mat-drawer-container>
+    <app-footer></app-footer>
+</div>

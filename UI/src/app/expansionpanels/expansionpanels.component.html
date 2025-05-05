@@ -1,0 +1,15 @@
+<div class="horizontal-container">
+    <div *ngFor="let team of teams" class="panel-wrapper">
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{ team.name }}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="button-container">
+            <div class="button-item" *ngFor="let child of team.children">
+                <button mat-button (click)="navigateTo(child.route)">{{ child.name }}</button>
+            </div>
+        </div>
+      </mat-expansion-panel>
+    </div>
+</div>
+<router-outlet></router-outlet>

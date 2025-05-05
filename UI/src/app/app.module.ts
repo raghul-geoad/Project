@@ -13,12 +13,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { AccessComponent } from './access/access.component';
-
+import { MatMenuModule } from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDividerModule} from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { ExpansionpanelsComponent } from './expansionpanels/expansionpanels.component';
 @NgModule({
   declarations: [
     AppComponent,
     routingModule,
     AccessComponent,
+    ExpansionpanelsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,8 +38,18 @@ import { AccessComponent } from './access/access.component';
     MatIconModule,
     FormsModule,
     HttpClientModule,
+<<<<<<< HEAD
     MatTableModule,
     MatSnackBarModule
+=======
+    MatButtonModule,
+    MatDividerModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatMenuModule,
+    MatExpansionModule
+>>>>>>> b63e444e07acc357002c364aa1b694be3644ae08
   ],
   providers: [],
   bootstrap: [AppComponent]
