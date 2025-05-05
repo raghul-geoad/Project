@@ -50,8 +50,9 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.username.value, this.password.value).subscribe({
         next : response => {
           if (response.message === 'success') {
-            sessionStorage.setItem("role",response.role);
-            sessionStorage.setItem("access",response.access);
+            // sessionStorage.setItem("username",this.username.toString())
+            // sessionStorage.setItem("role",response.role);
+            // sessionStorage.setItem("access",response.access);
             this.router.navigate(['/dashboard']); 
           } else {
             this.message = response.message;
