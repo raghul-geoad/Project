@@ -13,13 +13,12 @@ export class DashboardComponent implements OnInit {
   events: string[] = [];
   public opened: boolean=true;
   @ViewChild('drawer') drawer!: MatDrawer;
-  constructor(private router : Router,public role: LoginService) { }
+  constructor(private router : Router,public loginService: LoginService) { }
 
   ngOnInit(): void {
   }
   toggleSidenav() {
     this.drawer.toggle();
-    // console.log(sessionStorage.getItem("username"));
   }
 
 }

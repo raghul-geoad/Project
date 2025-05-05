@@ -13,8 +13,8 @@
                     <mat-divider></mat-divider>
                     <mat-list-item [routerLink]="['/dashboard/storageInventory']"><mat-icon>inbox</mat-icon>Storage</mat-list-item>
                     <mat-divider></mat-divider>
-                    <mat-list-item *ngIf="role.getRole()==='admin'" [routerLink]="['/dashboard/accessRequest']"><mat-icon>verified</mat-icon>Access Management</mat-list-item>
-                    <mat-divider *ngIf="role.getRole()==='admin'"></mat-divider>
+                    <mat-list-item *ngIf="loginService.getRole()==='admin'" [routerLink]="['/dashboard/accessRequest']"><mat-icon>verified</mat-icon>Access Management</mat-list-item>
+                    <mat-divider *ngIf="loginService.getRole()==='admin'"></mat-divider>
                 </mat-nav-list>
             </mat-drawer>
             <mat-drawer-content >
