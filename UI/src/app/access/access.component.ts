@@ -15,7 +15,10 @@ export class AccessComponent implements OnInit {
   constructor(private http:HttpClient,private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
-    this.http.get("http://127.0.0.1:5000/getUserRequest").subscribe((data:any)=>this.dataSource=data,(err)=>console.error(err));
+    this.http.get("http://127.0.0.1:5000/getUserRequest").subscribe({
+      next:(data:any)=>this.dataSource=data,
+      error:(err)=>console.error(err)
+    });
   }
   
   processRequest(row:any,action:boolean){

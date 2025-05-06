@@ -22,6 +22,7 @@ import { MatCardModule } from '@angular/material/card'
 import { ExpansionpanelsComponent } from './expansionpanels/expansionpanels.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     FormsModule,
     HttpClientModule,
     MatTableModule,
+    MatSortModule,
     MatSnackBarModule,
     MatButtonModule,
     MatDividerModule,

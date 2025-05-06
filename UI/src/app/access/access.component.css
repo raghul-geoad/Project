@@ -3,9 +3,10 @@ table{
     margin: 50px auto;
 }
 .mat-header-cell{
-    padding: 20px;
-    margin: 10px;
     text-align: center;
+}
+.mat-cell{
+    min-width:100px;
 }
 h2{
     text-align: center;
