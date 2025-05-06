@@ -21,7 +21,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card'
 import { ExpansionpanelsComponent } from './expansionpanels/expansionpanels.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { ActivatedRouteSnapshot } from '@angular/router';
     routingModule,
     AccessComponent,
     ExpansionpanelsComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,

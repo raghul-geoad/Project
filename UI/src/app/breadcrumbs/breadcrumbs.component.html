@@ -1,0 +1,6 @@
+<nav class="breadcrumb">
+    <span *ngFor="let crumb of breadcrumbs; let i = index">
+      <a (click)="goTo(i)" class="breadcrumb-link">{{ getLabel(crumb) }}</a>
+      <span *ngIf="i < breadcrumbs.length - 1">&nbsp;/&nbsp;</span>
+    </span>
+</nav>
