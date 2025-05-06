@@ -10,9 +10,11 @@ import { LoginService } from '../services/login.service';
 export class HeaderComponent implements OnInit {
   @Output() sidenavToggle = new EventEmitter<void>();
   public role:any;
+  public username:any;
   constructor(private router : Router,private authService : LoginService) { }
 
   ngOnInit(): void {
+    this.username = sessionStorage.getItem('username');
   }
   toggleSidenav() {
     this.sidenavToggle.emit();
