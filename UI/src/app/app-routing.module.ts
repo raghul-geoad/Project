@@ -26,7 +26,7 @@ const routes: Routes = [
     {path:'accessRequest',component:AccessComponent,canActivate:[RoleGuard]}
   ]
   },
-  {path:'accessDenied',component:AccessDeniedComponent},
+  {path:'accessDenied',component:AccessDeniedComponent,canActivate:[LoginAuthGuard]},
   {path:"**",component:PagenotfoundComponent}
 ];
 

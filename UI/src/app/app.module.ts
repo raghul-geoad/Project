@@ -21,6 +21,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card'
 import { ExpansionpanelsComponent } from './expansionpanels/expansionpanels.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MatSortModule } from '@angular/material/sort';
     routingModule,
     AccessComponent,
     ExpansionpanelsComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,
