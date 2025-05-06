@@ -8,11 +8,20 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Component</th>
         <td mat-cell *matCellDef="let row">{{row.component}}</td>
     </ng-container>
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let row">{{row.status}}</td>
+    </ng-container>
+    <ng-container matColumnDef="processed_at">
+        <th mat-header-cell *matHeaderCellDef>Processed Datetime</th>
+        <td mat-cell *matCellDef="let row">{{row.processed_at}}</td>
+    </ng-container>
     <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
-        <td mat-cell *matCellDef="let row">
-            <button mat-button (click)="processRequest(row,true)" class="btn btn-accept">Accept <mat-icon>check</mat-icon> </button>
-            <button mat-button (click)="processRequest(row,false)" class="btn btn-reject">Reject <mat-icon>block</mat-icon> </button>
+        <td mat-cell *matCellDef="let row" class="action">
+            <span *ngIf="row.status!='pending'">Request was {{row.status}}</span>
+            <button mat-button *ngIf="row.status=='pending'" (click)="processRequest(row,true)" class="btn btn-accept">Accept <mat-icon>check</mat-icon> </button>
+            <button mat-button *ngIf="row.status=='pending'" (click)="processRequest(row,false)" class="btn btn-reject">Reject <mat-icon>block</mat-icon> </button>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>

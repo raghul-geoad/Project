@@ -11,7 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class AccessComponent implements OnInit {
 
   public dataSource = new MatTableDataSource();
-  public displayColumns=["username","component","action"];
+  public displayColumns=["username","component","status","processed_at","action"];
   constructor(private http:HttpClient,private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {

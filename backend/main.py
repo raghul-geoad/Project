@@ -4,17 +4,18 @@ from flask_cors import CORS
 from sqlalchemy import func
 from db_config import db
 from models import User,Request
+from datetime import datetime
 
 app=Flask(__name__)
 CORS(app)
 
 
 #Test(Raghul's) DB 
-# app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:12345@localhost/project'
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:12345@localhost/project'
 
 
 #Test(selva's) DB
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:root@localhost/Project'
+# app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:root@localhost/Project'
 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
@@ -70,19 +71,21 @@ def access_request():
     component=data["component"]
 
     user=User.query.filter_by(name=username).first()
-
     if not user:
         return jsonify({"message":"User not found"})
     
-    existing_request=Request.query.filter_by(name=username,component=component).first()
+    if user.access_component and component in user.access_component:
+        return jsonify({"message":"Access already granted, Kindly logout and login again"})
+    
+    existing_request=Request.query.filter_by(name=username,component=component,status='pending').first()
 
     if not existing_request:
-        new_request=Request(name=username,component=component)
+        new_request=Request(name=username,component=component,processed_at=datetime.now())
         db.session.add(new_request)
         db.session.commit()
         return jsonify({"message":"Access requested"})
     else:
-        return jsonify({"message":"Already requested"})
+        return jsonify({"message":f"Already requested, request {existing_request.status}"})
     
 
 @app.route("/processAccessRequest",methods=["POST"])
@@ -93,7 +96,7 @@ def process_request():
     bool=data["action"]
 
     user=User.query.filter_by(name=username).first()
-    req=Request.query.filter_by(name=username,component=component).first()
+    req=Request.query.filter_by(name=username,component=component,status='pending').first()
 
     if not user:
         return jsonify({"message":"User not found"})
@@ -104,25 +107,28 @@ def process_request():
                 message="Access already granted"
             else:
                 user.access_component=func.array_append(user.access_component,component)
+                req.status='accepted'
+                req.processed_at=datetime.now()
                 db.session.commit()
                 message="Access granted"
         else:
             user.access_component=[component]
+            req.status='accepted'
+            req.processed_at=datetime.now()
             db.session.commit()
             message="Access granted"
     else:
-        message="Request rejected"
-    
-    if req:
-        db.session.delete(req)
+        req.status='rejected'
+        req.processed_at=datetime.now()
         db.session.commit()
+        message="Request rejected"
 
     return jsonify({"message":message})
     
 @app.route("/getUserRequest")
 def get_user():
     req=Request.query.all()
-    users=[{"user":user.name,"component":user.component} for user in req]
+    users=[{"user":user.name,"component":user.component,"status":user.status,"processed_at":user.processed_at} for user in req]
     return users
 
 if __name__=="__main__":
