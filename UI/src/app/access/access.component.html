@@ -11,8 +11,8 @@
     <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let row">
-            <button mat-button (click)="processRequest(row,true)">Accept <mat-icon>check</mat-icon> </button>
-            <button mat-button (click)="processRequest(row,false)">Reject <mat-icon>block</mat-icon> </button>
+            <button mat-button (click)="processRequest(row,true)" class="btn btn-accept">Accept <mat-icon>check</mat-icon> </button>
+            <button mat-button (click)="processRequest(row,false)" class="btn btn-reject">Reject <mat-icon>block</mat-icon> </button>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
