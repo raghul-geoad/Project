@@ -21,7 +21,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card'
 import { ExpansionpanelsComponent } from './expansionpanels/expansionpanels.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -44,6 +44,7 @@ import { ActivatedRouteSnapshot } from '@angular/router';
     FormsModule,
     HttpClientModule,
     MatTableModule,
+    MatSortModule,
     MatSnackBarModule,
     MatButtonModule,
     MatDividerModule,
